@@ -4,6 +4,14 @@ $column-width 		: 4em;
 $gutter-width 		: 1em;
 $grid-padding 		: $gutter-width;
 
+$susy: (
+  columns: $total-columns,
+  gutters: 1/4,
+  math: fluid,
+  output: float,
+  gutter-position: inside,
+);
+
 @include border-box-sizing;
 
 $small  			: 30em;
@@ -25,11 +33,11 @@ $large 				: 75em;
 	.primary {
 		margin-top:.2em;
 
-		@include at-breakpoint($medium) { // media query
+		@include breakpoint($medium) { // media query
 
 			// this says at $medium, items in .primary will be
 			// 8 colums out of 12
-			@include span-columns(8,12); 
+			@include span(8); 
 
 			#nextmeeting {
 				@include border-radius(20px);
@@ -59,9 +67,9 @@ $large 				: 75em;
 	// secondary ------------------------------------------
 
 	.secondary {
-		@include at-breakpoint($medium) {
+		@include breakpoint($medium) {
 
-			@include span-columns(4 omega, 12);  // omega is last on right hand side
+			@include span(4 at 9);  // omega is last on right hand side
 			font-size: 1.1rem;
 			h1 {
 				font-size: 1.8rem;
@@ -86,7 +94,7 @@ header {
 
 	.hero {
 		width: 100%;
-		@include at-breakpoint($medium) {
+		@include breakpoint($medium) {
 			@include single-transition(all, 1s, ease-out, 1s);
 			position: relative;
 			display: block;
@@ -117,7 +125,7 @@ header {
 	background-color: lighten($darkblue, 15%);
 	ul.nav {
 
-		@include at-breakpoint($small) {
+		@include breakpoint($small) {
 			@include horizontal-list; // makes lists horizontal
 		}
 		li {
@@ -162,7 +170,7 @@ header {
 		padding-right: 15px;
 	}
 
-	@include at-breakpoint($medium) {
+	@include breakpoint($medium) {
 		text-align: center;
 		@include background(linear-gradient(top, lighten($darkblue, 3), $darkerblue));
 		overflow: hidden;
@@ -177,7 +185,7 @@ header {
 			color: $green;
 			font-size: 2.6rem;
 			line-height: 1em;
-			@include at-breakpoint($large) {
+			@include breakpoint($large) {
 				font-size: 4rem;
 				line-height: 1em;
 			} // large
@@ -230,12 +238,12 @@ header {
 		}
 
 		.artist {
-			@include span-columns(4, 12);
+			@include span(4);
 		}
 
-		.artist:nth-of-type(3) {
-			@include span-columns(4 omega, 12);
-		}
+		// .artist:nth-of-type(3) {
+		// 	@include span(1 at 3);
+		// }
 
 	}//medium
 }// speakerslist
